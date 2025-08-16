@@ -1,0 +1,13 @@
+# Ignore the compiled output.
+dist/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Node modules
+node_modules/
+
+# Mac OS
+.DS_Store
