@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app';
 import { getAI, getGenerativeModel, GoogleAIBackend } from 'firebase/ai';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCl_fV9Ympx106DQSk6ytPNfLqqRm7WPCs',
-  authDomain: 'document-image-processin-f06f9.firebaseapp.com',
-  projectId: 'document-image-processin-f06f9',
-  storageBucket: 'document-image-processin-f06f9.firebasestorage.app',
-  messagingSenderId: '799045424197',
-  appId: '1:799045424197:web:0ca9aa38c291b1d7c2ff2c',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
