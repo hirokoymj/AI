@@ -31,7 +31,8 @@ const model = getGenerativeModel(ai, { model: 'gemini-2.5-flash' });
 
 ## @firebase/ai API reference
 
-[model.generateContent](https://firebase.google.com/docs/reference/js/ai.generativemodel.md?authuser=0#generativemodelgeneratecontent)
+- [Overview](https://firebase.google.com/docs/reference/js/ai?authuser=0)
+- [model.generateContent](https://firebase.google.com/docs/reference/js/ai.generativemodel.md?authuser=0#generativemodelgeneratecontent)
 
 ```js
 generateContent(request: GenerateContentRequest | string | Array<string | Part>): Promise<GenerateContentResult>;
