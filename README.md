@@ -31,84 +31,43 @@ const model = getGenerativeModel(ai, { model: 'gemini-2.5-flash' });
 
 ## Image to Text using GenerativeModel
 
-- [test.js](./src/test.js)
 - https://firebase.google.com/docs/ai-logic/analyze-images?api=dev#base64
 
 ```js
-async function run() {
-  const prompt = 'What do you see?';
-
-  try {
-    const imagePart = await fileToGenerativePart('./assets/hawaii1.jpg');
-    const result = await model.generateContent([prompt, imagePart]);
-    const response = result.response;
-    const text = response.text();
-    console.log(text);
-  } catch (error) {}
-}
+const prompt = 'What do you see?';
+const imagePart = await fileToGenerativePart('./assets/hawaii1.jpg');
+const result = await model.generateContent([prompt, imagePart]);
 ```
 
 - [Summary.jsx](./src/components/Summary.jsx)
 
 ```js
-async function getSummary() {
-  setStatus('loading');
-  try {
-    const result = await geminiModel.generateContent([
-      {
-        inlineData: {
-          data: file.file,
-          mimeType: file.type,
-        },
-      },
-      `
-      Summarize the document
-      in one short paragraph (less than 100 words).
-      Use just plain text with no markdowns or html tags
-        `,
-    ]);
-    setStatus('success');
-    setSummary(result.response.text());
-  } catch (error) {}
-}
+const result = await geminiModel.generateContent([
+  {
+    inlineData: {
+      data: file.file,
+      mimeType: file.type,
+    },
+  },
+  `Summarize the document in one short paragraph (less than 100 words). Use just plain text with no markdowns or html tags`,
+]);
 ```
 
 - [Chat.jsx](./src/components/Chat.jsx)
 
 ```js
-async function handleSendMessage() {
-  if (input.length) {
-    let chatMessages = [
-      ...messages,
-      { role: 'user', text: input },
-      { role: 'loader', text: '' },
-    ];
-    setInput('');
-    setMessages(chatMessages);
-
-    try {
-      const result = await geminiModel.generateContent([
-        {
-          inlineData: {
-            data: file.file,
-            mimeType: file.type,
-          },
-        },
-        `
-        Answer this question about the attached document: ${input}.
-        Answer as a chatbot with short messages and text only (no markdowns, tags or symbols)
-        Chat history: ${JSON.stringify(messages)}
-      `,
-      ]);
-
-      chatMessages = [
-        ...chatMessages.filter((msg) => msg.role != 'loader'),
-        { role: 'model', text: result.response.text() },
-      ];
-      setMessages(chatMessages);
-    } catch (error) {}
-  }
-}
+const result = await geminiModel.generateContent([
+  {
+    inlineData: {
+      data: file.file,
+      mimeType: file.type,
+    },
+  },
+  `
+  Answer this question about the attached document: ${input}.
+  Answer as a chatbot with short messages and text only (no markdowns, tags or symbols)
+  Chat history: ${JSON.stringify(messages)}`,
+]);
 ```
 
 ## @firebase/ai API reference
